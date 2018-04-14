@@ -754,22 +754,12 @@ public class Term extends Activity implements UpdateCallback, SharedPreferences.
     }
 
     private void confirmCloseWindow() {
-        final AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setIcon(android.R.drawable.ic_dialog_alert);
-        b.setMessage(R.string.confirm_window_close_message);
         final Runnable closeWindow = new Runnable() {
             public void run() {
                 doCloseWindow();
             }
         };
-        b.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-               dialog.dismiss();
-               mHandler.post(closeWindow);
-           }
-        });
-        b.setNegativeButton(android.R.string.no, null);
-        b.show();
+        mHandler.post(closeWindow);
     }
 
     private void doCloseWindow() {
