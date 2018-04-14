@@ -34,7 +34,7 @@
 #include "termExec.h"
 #include "fileCompat.h"
 
-#define LOG_TAG "libjackpal-androidterm"
+#define LOG_TAG "libze00-PvzCheater"
 
 /*
  * Register several native methods for one class.

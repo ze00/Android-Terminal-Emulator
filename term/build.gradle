@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "jackpal.androidterm"
+        applicationId "ze00.PvzCheater"
         minSdkVersion 4
         targetSdkVersion 22
 
