@@ -5,3 +5,8 @@
 .DS_Store
 /build
 *.iml
+/*.apk
+/pvz
+/na
+/v
+/build.sh

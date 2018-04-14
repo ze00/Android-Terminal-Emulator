@@ -30,7 +30,7 @@ import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 import jackpal.androidterm.util.SessionList;
 import jackpal.androidterm.util.TermSettings;
 
-import java.io.IOException;
+import java.io.*;
 import java.text.Collator;
 import java.util.Arrays;
 import java.util.List;
@@ -334,8 +334,28 @@ public class Term extends Activity implements UpdateCallback, SharedPreferences.
 
         if (icicle == null)
             onNewIntent(getIntent());
+        Context ctx = getApplicationContext();
+        String client_actual = ctx.getFilesDir().getPath() + "/pvz_client";
+        File Client = new File(client_actual);
+        if(!Client.exists()) {
+          try {
+            Client.createNewFile();
+            InputStream stream = ctx.getAssets().open("pvz_client");
+            FileOutputStream outs = new FileOutputStream(Client);
+            byte[] content = new byte[1024];
+            while((stream.read(content)) != -1) {
+              outs.write(content);
+              outs.flush();
+            }
+            Runtime.getRuntime().exec("chmod 777 " + client_actual);
+            outs.close();
+          } catch (Exception ex) { }
+        }
 
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = mPrefs.edit();
+        edit.putString("shell", client_actual);
+        edit.commit();
         mSettings = new TermSettings(getResources(), mPrefs);
         mPrefs.registerOnSharedPreferenceChangeListener(this);
 
